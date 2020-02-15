@@ -111,6 +111,7 @@
   left: 0;
   height: 100%;
   width: 100%;
+  z-index: 1000;
   background:#F0A251;
   overflow: hidden;
   opacity: var(--fader);
