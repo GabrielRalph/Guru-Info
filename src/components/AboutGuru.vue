@@ -13,8 +13,8 @@
           <td style = "width: 50%"></td>
         </tr>
       </div>
-      <div class = "top" v-if="edit">
-        <v-icon color = "rgb(240, 162, 81)" size = "100px" @click = "save">save</v-icon>
+      <div class = "top">
+        <v-icon color = "rgb(240, 162, 81)" size = "100px" @click = "save" @dblclick = "editToggle">save</v-icon>
       </div>
 
       <v-window v-model = "pg">
@@ -53,7 +53,7 @@
         <v-window-item>
           <div v-html = "getelement(2,0)"></div>
           <v-text-field v-if="edit" :value = "value[2][0].text" @input = "setelement(2,0, $event)" height = "50px"></v-text-field>
-          <v-img style = "float: left; margin-right: 20px" src = "..\assets\login.png" width = "50%"></v-img>
+          <v-img style = "float: left; margin-right: 20px" src = "..\assets\login.png" width = "30%"></v-img>
           <div v-html = "getelement(2,1)"></div>
           <v-textarea  v-if="edit" :value = "value[2][1].text" @input = "setelement(2,1, $event)"></v-textarea>
 
@@ -134,6 +134,9 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
       },
       save(){
         firebase.database().ref('/data').set(this.value)
+      },
+      editToggle(){
+        firebase.database().ref('/edit').set(!this.edit)
       }
     },
     computed: {

@@ -40,6 +40,7 @@ export default {
     firebase.database().ref().on('value', (sc) =>  {
       this.database = sc.val().data
       this.edit = sc.val().edit
+      console.log(sc.val());
       setTimeout(()=>{
         this.load = true;
       }, 1000)
