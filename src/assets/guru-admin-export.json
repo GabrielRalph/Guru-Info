@@ -1,0 +1,45 @@
+{"data": [ [ {
+  "text" : "Backstory",
+  "type" : "h1"
+}, {
+  "text" : "As a resident of the Sydney University Student Cooperative (Stucco), I would often lose my key, a small NFC chip. I was not the only one that did this; many fellow residents would also misplace their key or forget to bring it on short trips. As a self-taught web developer and student of engineering mechatronics, I decided to develop a solution to the problem at hand. I was able to create a single page web application that could allow residents to unlock the doors. The implementation of Guru was approved, provided that security protocols where put in place. Guru was a great success with all residents joining the user database and half choosing Guru over the physical key. As we became a bookmark or forever open tab on most people's phones using our profile database, we began to expand growing functions to solve problems other residents and committees were having. For instance, before Guru Minute's residents would write minutes in any text editor and then send the minutes to a google group. They would then have to find the link to a google form and tick all residents and applicants who attended the meeting. This tortuous process often caused us to forget to submit attendance, and as so irregular formatting of minutes occurred. We combine a rich text editor, reactive checkbox, error checker, and formater to ensure all relevant data is formated and recorded.",
+  "type" : "p"
+} ], [ {
+  "text" : "What is Guru",
+  "type" : "h1"
+}, {
+  "text" : "Guru is a web application to help residents of student housing with general admin organization and opening doors. Guru has been designed to work in two main modes. Guru will automatically choose the mode based on the users device and screen aspect ratio. <br /><br />",
+  "type" : "p"
+}, {
+  "text" : "Dashboard",
+  "type" : "h2"
+}, {
+  "text" : "The mobile dashboard was designed specifically for mobile phones and can be added to the home screen on most mobile handsets.  The mobile dashboard allows users to unlock a given door by tapping on its icon. This will unlock the door for 4 seconds before locking again. Users can also view relevant information such as their rent balance, dates of meetings and attendance respectively. <br /><br />",
+  "type" : "p"
+}, {
+  "text" : "Control Panel",
+  "type" : "h2"
+}, {
+  "text" : "The control panel was designed to work on wider displays, such as laptops, desktops and tablets. With in the control panel mode a user can perform a number of functions, given their status a user can edit or view the members in the database, their attendance and rent. Users can also write and submit minutes and attendance for a meeting. Minutes can be saved as a draft and will remain on a users profile until it is either sent or deleted. Minutes are checked for odd dates and quorum before being sent. Once sent the minutes are emailed to all residents and stored in the database, attendance is then automatically updated.",
+  "type" : "p"
+} ], [ {
+  "text" : "Secruity",
+  "type" : "h1"
+}, {
+  "text" : "A user must first sign in to Guru when they visit the site. Once signed in, if the user does not have a profile one is created -> the user is then prompted to state their reason for using the app (e.g. resident or applicant) -> admin are alerted and can confirm or deny the request. If a user has requested and been accepted they will then be able to use guru functions that their status permits. Guru's database is rules-based, allowing users to read and write data based on their status. Furthermore, cloud functions are used to further separate the user from the database and prevent malicious behavior.",
+  "type" : "p"
+} ], [ {
+  "text" : "Cost",
+  "type" : "h1"
+}, {
+  "text" : "Something else\n<br />\n<table style = \"font-size: 30px\">\n<tr>\n<td style = \"width: 50%\"> xoxo</td>\n<td> xoxo</td>\n<td> $xoxo</td>\n</tr>\n<tr>\n<td style = \"width: 100%\"> xoxo</td>\n<td> xoxo</td>\n<td> $xoxo</td>\n</tr>\n</table>\n",
+  "type" : "p"
+} ], [ {
+  "text" : "Legal",
+  "type" : "h1"
+}, {
+  "text" : "lorim ipsim lorim ipsim lorim ipsim lorim ipsim lorim ipsim lorim ipsim lorim ipsim lorim ipsim a little more",
+  "type" : "p"
+} ] ],
+"edit": true
+}

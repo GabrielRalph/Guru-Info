@@ -1,13 +1,26 @@
 <template>
   <div id = "main">
-    <splashscreen time = "2000"></splashscreen>
-    <about-guru></about-guru>
+    <splashscreen v-model = "load"></splashscreen>
+    <about-guru :edit = "edit" v-if = "database.length > 0" v-model = "database"></about-guru>
   </div>
 </template>
 
 <script>
 import splashscreen from './components/splashscreen.vue';
 import AboutGuru from './components/AboutGuru.vue';
+import firebase from 'firebase';
+// Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDe5Z5STt003BGd5k3EuGSTu7hWKqZltI4",
+    authDomain: "guru-admin.firebaseapp.com",
+    databaseURL: "https://guru-admin.firebaseio.com",
+    projectId: "guru-admin",
+    storageBucket: "guru-admin.appspot.com",
+    messagingSenderId: "618229197693",
+    appId: "1:618229197693:web:08bdb2afd1457f6f22ba14"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
 export default {
   name: 'App',
@@ -18,8 +31,20 @@ export default {
   },
 
   data: () => ({
-    splash: false
+    splash: false,
+    load: false,
+    database: [],
+    edit: false
   }),
+  created(){
+    firebase.database().ref().on('value', (sc) =>  {
+      this.database = sc.val().data
+      this.edit = sc.val().edit
+      setTimeout(()=>{
+        this.load = true;
+      }, 1000)
+    })
+  }
 };
 </script>
 

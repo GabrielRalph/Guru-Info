@@ -13,13 +13,17 @@
           <td style = "width: 50%"></td>
         </tr>
       </div>
+      <div class = "top" v-if="edit">
+        <v-icon color = "rgb(240, 162, 81)" size = "100px" @click = "save">save</v-icon>
+      </div>
 
       <v-window v-model = "pg">
         <v-window-item>
-            <h1>Backstory</h1>
-            <p>
-              As a resident of the Sydney University Student Cooperative (Stucco), I would often lose my key, a small NFC chip. I was not the only one that did this, many fellow residents would also misplace their key or simply forget to bring it on short trips. As a self-taught web developer and student of engineering mechatronics, I decided to develop a solution to the problem at hand. I was able to develop a single page web application that could allow residents to unlock the doors. The implementation of Guru was approved, provided that security protocols where put in place. Guru was a great success with all residents joining the user database and half choosing Guru over the physical key. As Guru became a bookmark or forever open tab on most people's phones, as well as a database with profiles for each resident, I began to develop other functions to aid in general admin and solve problems other residents and committees where having. For instance, before Guru Minute's residents would write minutes in any form of a text editor and then send the minutes to a google group. They would then have to find the link to a google form and tick all residents and applicants who attended the meeting. This tortuous process often led to attendance being overlooked and irregular formatting of minutes.
-            </p>
+            <div v-html = "getelement(0,0)"></div>
+            <v-text-field v-if="edit" :value = "value[0][0].text" @input = "setelement(0,0, $event)" height = "50px"></v-text-field>
+            <div v-html = "getelement(0,1)"></div>
+            <v-textarea v-if="edit" :value = "value[0][1].text" @input = "setelement(0,1, $event)"></v-textarea>
+
         </v-window-item>
         <v-window-item>
           <div class = "sc-phone">
@@ -30,47 +34,66 @@
               <img src = "../assets/back.svg"/>
             </div>
           </div>
-          <h1>What is Guru</h1>
-          <p>
-            Guru is a web application to help residents of student housing with general admin organization and opening doors. Guru has been designed to work in two main modes. Guru will automatically choose the mode based on the users device and screen aspect ratio.
-            <br /><br />
-          </p>
-          <h2>Dashboard</h2>
-          <p>
-            The mobile dashboard was designed specifically for mobile phones and can be added to the home screen on most mobile handsets.  The mobile dashboard allows users to unlock a given door by tapping on its icon. This will unlock the door for 4 seconds before locking again. Users can also view relevant information such as their rent balance, dates of meetings and attendance respectively.
-            <br /><br />
-          </p>
-          <div class = "h">
-          </div>
-          <div class = "h">
-            <h2>Control Panel</h2>
-            <v-img style = "float: left; margin-right: 20px" src = "..\assets\guru.stucco.org.au_(iPad).png" width = "50%"></v-img>
-            <p>
-              The control panel was designed to work on wider displays, such as laptops, desktops and tablets. With in the control panel mode a user can perform a number of functions, given their status a user can edit or view the members in the database, their attendance and rent. Users can also write and submit minutes and attendance for a meeting. Minutes can be saved as a draft and will remain on a users profile until it is either sent or deleted. Minutes are checked for odd dates and quorum before being sent. Once sent the minutes are emailed to all residents and stored in the database, attendance is then automatically updated.
-            </p>
-          </div>
+          <div v-html = "getelement(1,0)"></div>
+          <v-text-field v-if="edit" :value = "value[1][0].text" @input = "setelement(1,0, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(1,1)"></div>
+          <v-textarea  v-if="edit" :value = "value[1][1].text" @input = "setelement(1,1, $event)"></v-textarea>
+          <div v-html = "getelement(1,2)"></div>
+          <v-text-field v-if="edit" :value = "value[1][2].text" @input = "setelement(1,2, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(1,3)"></div>
+          <v-textarea  v-if="edit" :value = "value[1][3].text" @input = "setelement(1,3, $event)"></v-textarea>
+          <div v-html = "getelement(1,4)"></div>
+          <v-text-field v-if="edit" :value = "value[1][4].text" @input = "setelement(1,4, $event)" height = "50px"></v-text-field>
+          <v-img style = "float: left; margin-right: 20px" src = "..\assets\guru.stucco.org.au_(iPad).png" width = "50%"></v-img>
+          <div v-html = "getelement(1,5)"></div>
+          <v-textarea  v-if="edit" :value = "value[1][5].text" @input = "setelement(1,5, $event)"></v-textarea>
+
         </v-window-item>
-        <v-window-item>Hello</v-window-item>
+
+        <v-window-item>
+          <div v-html = "getelement(2,0)"></div>
+          <v-text-field v-if="edit" :value = "value[2][0].text" @input = "setelement(2,0, $event)" height = "50px"></v-text-field>
+          <v-img style = "float: left; margin-right: 20px" src = "..\assets\login.png" width = "50%"></v-img>
+          <div v-html = "getelement(2,1)"></div>
+          <v-textarea  v-if="edit" :value = "value[2][1].text" @input = "setelement(2,1, $event)"></v-textarea>
+
+
+
+        </v-window-item>
+        <v-window-item>
+          <div v-html = "getelement(3,0)"></div>
+          <v-text-field v-if="edit" :value = "value[3][0].text" @input = "setelement(3,0, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(3,1)"></div>
+          <v-textarea  v-if="edit" :value = "value[3][1].text" @input = "setelement(3,1, $event)"></v-textarea>
+        </v-window-item>
+        <v-window-item>
+          <div v-html = "getelement(4,0)"></div>
+          <v-text-field v-if="edit" :value = "value[4][0].text" @input = "setelement(4,0, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(4,1)"></div>
+          <v-textarea  v-if="edit" :value = "value[4][1].text" @input = "setelement(4,1, $event)"></v-textarea>
+        </v-window-item>
       </v-window>
-
-
-
-
-
-        <v-textarea v-model = "p1" class = "txt"></v-textarea>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 let cssSet = (variable, set) => {document.documentElement.style.setProperty(variable, set);}
   export default {
-    name: 'splashscreen',
-
+    props: {
+      value: {
+        required: true
+      },
+      edit: {
+        default: false
+      }
+    },
     data: () => ({
       p1: '',
       pg: 0,
-      pgs: 3
+      pgs: 5
+
 
     }),
     methods: {
@@ -80,13 +103,37 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
         }else if(direction == 'right'){
           this.pg ++;
         }
-        this.fade()
+        this.fade(1000)
       },
-      fade(){
+      fade(x){
         cssSet('--opacity', 1)
         setTimeout(()=>{
           cssSet('--opacity', 0);
-        },1000)
+        },x)
+      },
+      getelement(page, elem){
+        console.log(this.value[page][elem])
+        if(this.value){
+          if(this.value[page]){
+            if(this.value[page][elem]){
+              return '<'+this.value[page][elem].type+'>'+this.value[page][elem].text+'</'+this.value[page][elem].type+'>'
+            }else{
+              var tempObject = JSON.parse(JSON.stringify(this.value))
+              tempObject[page][elem].text = 'placeHolde'
+              tempObject[page][elem].type = 'h1'
+              this.$emit('input', tempObject)
+            }
+          }
+        }
+      },
+      setelement(page, elem, e){
+        var tempObject = JSON.parse(JSON.stringify(this.value))
+        tempObject[page][elem].text = e
+        this.$emit('input', tempObject)
+        this.$forceUpdate()
+      },
+      save(){
+        firebase.database().ref('/data').set(this.value)
       }
     },
     computed: {
@@ -100,6 +147,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
     created(){
       window.addEventListener('resize', ()=> {cssSet('--padding', ( ((window.innerWidth - 900)/2 < 100 )?(100):( (window.innerWidth - 900)/2 )) + 'px')});
       cssSet('--padding', ( ((window.innerWidth - 900)/2 < 100 )?(100):( (window.innerWidth - 900)/2 )) + 'px')
+      this.fade(3500);
     }
 
 
@@ -113,6 +161,9 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
   --padding: 150px;
   --icon-size: 100px;
   --opacity: 1;
+}
+input{
+  font-size: 50px;
 }
 .lctn div{
   border-radius: 50px;
@@ -145,15 +196,22 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
   padding:  100px var(--padding);
   font-family: 'Roboto', sans-serif;
 }
-.bottom{
+.bottom, .top{
   position: fixed;
-  bottom: 0;
   left: 0;
   z-index: 900;
   opacity: var(--opacity);
   transition: 0.7s;
 }
-.bottom:hover{
+.bottom{
+  bottom: 0;
+}
+.top {
+  top: 0;
+  padding-left: calc(100% - var(--icon-size) - (var(--padding) - var(--icon-size))/4);
+  padding-top: calc((var(--padding) - var(--icon-size))/4);
+}
+.bottom:hover, .top:hover, .left:hover, .right:hover{
   opacity: 1;
 }
 
@@ -170,9 +228,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
 .right{
   right: 0;
 }
-.left:hover, .right:hover{
-  opacity: 1;
-}
+
 .h{
   margin-bottom: 100px;
 }
@@ -190,7 +246,7 @@ p{
   font-weight: 400;
 }
 .txt{
-  font-size: 25px;
+  font-size: 50px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
