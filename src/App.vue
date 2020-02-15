@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id = "main">
+    <splashscreen time = "2000"></splashscreen>
+    <about-guru></about-guru>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import splashscreen from './components/splashscreen.vue';
+import AboutGuru from './components/AboutGuru.vue';
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
-}
+    splashscreen,
+    AboutGuru,
+  },
+
+  data: () => ({
+    splash: false
+  }),
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#main{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+body {
+  -ms-overflow-style: none;
+}
+.btn{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: blue;
+  z-index: 1000;
+}
+
 </style>
