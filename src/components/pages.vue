@@ -9,7 +9,7 @@
       <div class = "bottom">
         <tr style = "width: 50%">
           <td style = "width: 50%"></td>
-          <td v-for = "i in pgs" :key = "'lctn_'+i"><div class = "lctn" @click = "pg = i-1"><div :class ="{show: pg+1 == i}"></div></div></td>
+          <td v-for = "i in value.length" :key = "'lctn_'+i"><div class = "lctn" @click = "pg = i-1"><div :class ="{show: pg+1 == i}"></div></div></td>
           <td style = "width: 50%"></td>
         </tr>
       </div>
@@ -119,7 +119,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
         return this.pg > 0
       },
       right_possible(){
-        return this.pg < this.pgs -1;
+        return this.pg < this.value.length -1;
       }
     },
     created(){
