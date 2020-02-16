@@ -23,7 +23,7 @@
             <div v-html = "getelement(0,0)"></div>
             <v-text-field v-if="edit" :value = "value[0][0].text" @input = "setelement(0,0, $event)" height = "50px"></v-text-field>
             <div v-html = "getelement(0,1)"></div>
-            <v-textarea v-if="edit" :value = "value[0][1].text" @input = "setelement(0,1, $event)"></v-textarea>
+            <ckeditor  :editor="editor" v-if="edit" :value = "value[0][1].text" @input = "setelement(0,1, $event)"></ckeditor>
 
         </v-window-item>
         <v-window-item>
@@ -38,16 +38,16 @@
           <div v-html = "getelement(1,0)"></div>
           <v-text-field v-if="edit" :value = "value[1][0].text" @input = "setelement(1,0, $event)" height = "50px"></v-text-field>
           <div v-html = "getelement(1,1)"></div>
-          <v-textarea  v-if="edit" :value = "value[1][1].text" @input = "setelement(1,1, $event)"></v-textarea>
+          <ckeditor  :editor="editor"  v-if="edit" :value = "value[1][1].text" @input = "setelement(1,1, $event)"></ckeditor>
           <div v-html = "getelement(1,2)"></div>
           <v-text-field v-if="edit" :value = "value[1][2].text" @input = "setelement(1,2, $event)" height = "50px"></v-text-field>
           <div v-html = "getelement(1,3)"></div>
-          <v-textarea  v-if="edit" :value = "value[1][3].text" @input = "setelement(1,3, $event)"></v-textarea>
+          <ckeditor  :editor="editor"  v-if="edit" :value = "value[1][3].text" @input = "setelement(1,3, $event)"></ckeditor>
           <div v-html = "getelement(1,4)"></div>
           <v-text-field v-if="edit" :value = "value[1][4].text" @input = "setelement(1,4, $event)" height = "50px"></v-text-field>
           <v-img style = "float: left; margin-right: 20px" src = "..\assets\guru.stucco.org.au_(iPad).png" width = "50%"></v-img>
           <div v-html = "getelement(1,5)"></div>
-          <v-textarea  v-if="edit" :value = "value[1][5].text" @input = "setelement(1,5, $event)"></v-textarea>
+          <ckeditor  :editor="editor"  v-if="edit" :value = "value[1][5].text" @input = "setelement(1,5, $event)"></ckeditor>
 
         </v-window-item>
 
@@ -56,7 +56,7 @@
           <v-text-field v-if="edit" :value = "value[2][0].text" @input = "setelement(2,0, $event)" height = "50px"></v-text-field>
           <v-img style = "float: left; margin-right: 20px" src = "..\assets\login.png" width = "30%"></v-img>
           <div v-html = "getelement(2,1)"></div>
-          <v-textarea  v-if="edit" :value = "value[2][1].text" @input = "setelement(2,1, $event)"></v-textarea>
+          <ckeditor  :editor="editor"  v-if="edit" :value = "value[2][1].text" @input = "setelement(2,1, $event)"></ckeditor>
 
 
 
@@ -65,21 +65,35 @@
           <div v-html = "getelement(3,0)"></div>
           <v-text-field v-if="edit" :value = "value[3][0].text" @input = "setelement(3,0, $event)" height = "50px"></v-text-field>
           <div v-html = "getelement(3,1)"></div>
-          <v-textarea  v-if="edit" :value = "value[3][1].text" @input = "setelement(3,1, $event)"></v-textarea>
+          <ckeditor  :editor="editor"  v-if="edit" :value = "value[3][1].text" @input = "setelement(3,1, $event)"></ckeditor>
         </v-window-item>
         <v-window-item>
           <div v-html = "getelement(4,0)"></div>
           <v-text-field v-if="edit" :value = "value[4][0].text" @input = "setelement(4,0, $event)" height = "50px"></v-text-field>
           <div v-html = "getelement(4,1)"></div>
-          <v-textarea  v-if="edit" :value = "value[4][1].text" @input = "setelement(4,1, $event)"></v-textarea>
+          <ckeditor  :editor="editor" v-if="edit" :value = "value[4][1].text" @input = "setelement(4,1, $event)"></ckeditor>
+        </v-window-item>
+        <v-window-item>
+          <div v-html = "getelement(5,0)"></div>
+          <v-text-field v-if="edit" :value = "value[5][0].text" @input = "setelement(5,0, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(5,1)"></div>
+          <ckeditor  :editor="editor" v-if="edit" :value = "value[5][1].text" @input = "setelement(5,1, $event)"></ckeditor>
+        </v-window-item>
+        <v-window-item>
+          <div v-html = "getelement(6,0)"></div>
+          <v-text-field v-if="edit" :value = "value[6][0].text" @input = "setelement(6,0, $event)" height = "50px"></v-text-field>
+          <div v-html = "getelement(6,1)"></div>
+          <ckeditor  :editor="editor" v-if="edit" :value = "value[6][1].text" @input = "setelement(6,1, $event)"></ckeditor>
         </v-window-item>
         <div class = "copyright">{{cc2}}</div>
+
       </v-window>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 let cssSet = (variable, set) => {document.documentElement.style.setProperty(variable, set);}
   export default {
@@ -101,9 +115,10 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
       }
     },
     data: () => ({
+      editor: ClassicEditor,
       p1: '',
       pg: 0,
-      pgs: 5
+      pgs: 7
 
 
     }),
@@ -180,14 +195,14 @@ input{
   font-size: 50px;
 }
 .lctn div{
-  border-radius: 50px;
+  border-radius: 30px;
   position: absolute;
   top: 0;
   left: 0;
-  border: 12.5px solid rgba(240, 162, 81, 0.5);
-  margin: -12px -12px;
-  width: 50px;
-  height: 50px;
+  border: 7.5px solid rgba(240, 162, 81, 0.5);
+  margin: -7.5px -7.5px;
+  width: 30px;
+  height: 30px;
   transition: 0.5s;
 }
 .lctn div:not(.show){
@@ -203,10 +218,10 @@ input{
 }
 .lctn {
   position: relative;
-  margin: 40px;
-  width:26px;
-  height:26px;
-  padding: 12px;
+  margin: 30px;
+  width:15px;
+  height:15px;
+  padding: 7.5px;
   border-radius: 26px;
   background: rgb(240, 162, 81);
 }

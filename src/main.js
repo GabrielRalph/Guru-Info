@@ -8,3 +8,5 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+import CKEditor from '@ckeditor/ckeditor5-vue';
+Vue.use( CKEditor );
