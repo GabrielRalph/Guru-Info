@@ -14,7 +14,8 @@
         </tr>
       </div>
       <div class = "top">
-        <v-icon color = "rgb(240, 162, 81)" size = "100px" @click = "save" @dblclick = "editToggle">save</v-icon>
+        <span>{{cc}}</span>
+        <v-icon v-if = "editable" color = "rgb(240, 162, 81)" size = "100px" @click = "save" @dblclick = "editToggle">save</v-icon>
       </div>
 
       <v-window v-model = "pg">
@@ -72,6 +73,7 @@
           <div v-html = "getelement(4,1)"></div>
           <v-textarea  v-if="edit" :value = "value[4][1].text" @input = "setelement(4,1, $event)"></v-textarea>
         </v-window-item>
+        <div class = "copyright">{{cc2}}</div>
       </v-window>
   </div>
 </template>
@@ -87,6 +89,15 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
       },
       edit: {
         default: false
+      },
+      editable: {
+        default: false
+      },
+      cc: {
+        default: "placeholder"
+      },
+      cc2:{
+        default: "copy right GG"
       }
     },
     data: () => ({
@@ -185,6 +196,11 @@ input{
 .show{
   opacity: 1;
 }
+.copyright{
+  width:100%;
+  text-align: center;
+  margin-top: 100px;
+}
 .lctn {
   position: relative;
   margin: 40px;
@@ -230,6 +246,7 @@ input{
 }
 .right{
   right: 0;
+
 }
 
 .h{

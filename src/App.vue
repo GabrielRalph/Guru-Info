@@ -1,7 +1,7 @@
 <template>
   <div id = "main">
     <splashscreen v-model = "load"></splashscreen>
-    <about-guru :edit = "edit" v-if = "database.length > 0" v-model = "database"></about-guru>
+    <about-guru :cc = "cc" :cc2 = "cc2" :edit = "edit" :editable = "editable" v-if = "database.length > 0" v-model = "database"></about-guru>
   </div>
 </template>
 
@@ -34,12 +34,18 @@ export default {
     splash: false,
     load: false,
     database: [],
-    edit: false
+    edit: false,
+    editable: false,
+    cc: 'okay',
+    cc2: 'copy right'
   }),
   created(){
     firebase.database().ref().on('value', (sc) =>  {
       this.database = sc.val().data
       this.edit = sc.val().edit
+      this.editable = sc.val().editable
+      this.cc = sc.val().cc
+      this.cc2 = sc.val().cc2
       console.log(sc.val());
       setTimeout(()=>{
         this.load = true;
