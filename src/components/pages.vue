@@ -44,9 +44,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
       value: {
         required: true
       },
-      edit: {
-        default: false
-      },
+
       editable: {
         default: false
       },
@@ -64,8 +62,8 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
       editor: ClassicEditor,
       p1: '',
       pg: 0,
-      pgs: 7
-
+      pgs: 7,
+      edit: false
 
     }),
     methods: {

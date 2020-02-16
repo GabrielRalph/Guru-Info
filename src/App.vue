@@ -1,7 +1,7 @@
 <template>
   <div id = "main">
     <splashscreen v-model = "load"></splashscreen>
-    <about-guru :assets = "assets" :cc = "cc" :cc2 = "cc2" :edit = "edit" :editable = "editable" v-if = "database.length > 0" v-model = "database"></about-guru>
+    <about-guru :assets = "assets" :cc = "cc" :cc2 = "cc2" :editable = "editable" v-if = "database.length > 0" v-model = "database"></about-guru>
   </div>
 </template>
 <script>
