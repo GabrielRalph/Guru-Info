@@ -113,7 +113,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
         firebase.database().ref('/pages').set(this.value)
       },
       editToggle(){
-        firebase.database().ref('/edit').set(!this.edit)
+        this.edit = !this.edit
       }
     },
     computed: {
