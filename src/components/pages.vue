@@ -15,9 +15,10 @@
       </div>
       <div class = "top">
         <span>{{cc}}</span>
-        <v-icon v-if = "editable" color = "rgb(240, 162, 81)" size = "50px" @click = "save" @dblclick = "editToggle">save</v-icon>
+        <v-icon v-if = "editable" color = "rgb(240, 162, 81)" size = "50px" @click = "save">save</v-icon>
         <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "addPage()">add</v-icon>
         <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "removePage()">remove</v-icon>
+        <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "editToggle">visibility</v-icon>
       </div>
 
       <v-window v-model = "pg">
@@ -199,6 +200,13 @@ input{
 }
 .top span{
   float: right;
+}
+i{
+  color: #0798ff;
+  font-style: normal;
+}
+blockquote p{
+  font-size: 20px;
 }
 .bottom:hover, .top:hover, .left:hover, .right:hover{
   opacity: 1;
