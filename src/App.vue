@@ -1,13 +1,12 @@
 <template>
   <div id = "main">
     <splashscreen v-model = "load"></splashscreen>
-    <about-guru :cc = "cc" :cc2 = "cc2" :edit = "edit" :editable = "editable" v-if = "database.length > 0" v-model = "database"></about-guru>
+    <about-guru :assets = "assets" :cc = "cc" :cc2 = "cc2" :edit = "edit" :editable = "editable" v-if = "database.length > 0" v-model = "database"></about-guru>
   </div>
 </template>
-
 <script>
 import splashscreen from './components/splashscreen.vue';
-import AboutGuru from './components/AboutGuru.vue';
+import AboutGuru from './components/pages.vue';
 import firebase from 'firebase';
 // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -37,15 +36,17 @@ export default {
     edit: false,
     editable: false,
     cc: 'okay',
-    cc2: 'copy right'
+    cc2: 'copy right',
+    assets: ''
   }),
   created(){
     firebase.database().ref().on('value', (sc) =>  {
-      this.database = sc.val().data
+      this.database = sc.val().pages
       this.edit = sc.val().edit
       this.editable = sc.val().editable
       this.cc = sc.val().cc
       this.cc2 = sc.val().cc2
+      this.assets = sc.val().assets
       console.log(sc.val());
       setTimeout(()=>{
         this.load = true;
