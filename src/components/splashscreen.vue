@@ -5,8 +5,7 @@
 </template>
 
 <script>
-var weather = require('weather.js');
-
+import axios from 'axios'
   export default {
     name: 'splashscreen',
     props: {
@@ -107,17 +106,16 @@ var weather = require('weather.js');
       }
     },
     created(){
-      fetch("https://api.darksky.net/forecast/fa5a2c2c8217557d4b1cdde9a875af92/-33.890971, 151.188661").then((response, err) => {
-        if (err) throw err
-        return response.json()
-      }).then((responseJson) => {
-        console.log(responseJson)
-        this.code = responseJson.current.icon;
-      })
 
-      weather.getCurrent("Kansas City", function(current) {
-        console.log(current);
-      });
+      axios.get('https://api.darksky.net/forecast/fa5a2c2c8217557d4b1cdde9a875af92/-33.890971,%20151.188661').then(
+      ({ data, status, statusText }) => {
+        console.log("Trades:", status, statusText);
+        console.log(data)
+        this.code = data.current.icon
+        return data;
+      },
+    );
+
       document.documentElement.style.setProperty('--fade-time', this.fadeTime/1000 + "s");
       this.show();
     }
