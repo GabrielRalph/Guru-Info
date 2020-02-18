@@ -50,7 +50,7 @@ export default {
       console.log(sc.val());
       setTimeout(()=>{
         this.load = true;
-      }, 1000)
+      }, 2000)
     })
   }
 };
