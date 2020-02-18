@@ -1,10 +1,12 @@
 <template>
   <div v-if = "shown" id = "splashscreen">
-    <img src = "../assets/logoINV.svg" />
+    <img :src = "weather[code]" />
   </div>
 </template>
 
 <script>
+var weather = require('weather.js');
+
   export default {
     name: 'splashscreen',
     props: {
@@ -34,6 +36,20 @@
       y: 0,
       x: 0,
       shown: true,
+      code: 'cloudy',
+      weather:{
+        "clear-day":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_1.svg?alt=media&token=eaea8bdf-cab8-4a1d-af22-eeaa4e757e1f",
+        "clear-night": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_3.svg?alt=media&token=feed4b32-c53a-40c9-a9a3-ea6c4cfed5dd",
+        "partly-cloudy-day": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_3.svg?alt=media&token=feed4b32-c53a-40c9-a9a3-ea6c4cfed5dd",
+        "partly-cloudy-night":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_1.svg?alt=media&token=eaea8bdf-cab8-4a1d-af22-eeaa4e757e1f",
+        "cloudy": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_3.svg?alt=media&token=feed4b32-c53a-40c9-a9a3-ea6c4cfed5dd",
+        "rain":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_0.svg?alt=media&token=d6e007ec-44b6-40f7-9125-41fc33321e6d",
+        "sleet":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_4.svg?alt=media&token=744e8707-62b4-478c-9312-9d1339c1e921",
+        "snow":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_4.svg?alt=media&token=744e8707-62b4-478c-9312-9d1339c1e921",
+        "wind": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_5.svg?alt=media&token=0274e1a8-4fd8-4bae-9c74-da226b642898",
+        "fog": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_2.svg?alt=media&token=3316ca2f-038d-4df8-983a-afc570dc881f",
+      }
+
 
     }),
 
@@ -91,6 +107,17 @@
       }
     },
     created(){
+      fetch("https://api.darksky.net/forecast/fa5a2c2c8217557d4b1cdde9a875af92/-33.890971, 151.188661").then((response, err) => {
+        if (err) throw err
+        return response.json()
+      }).then((responseJson) => {
+        console.log(responseJson)
+        this.code = responseJson.current.icon;
+      })
+
+      weather.getCurrent("Kansas City", function(current) {
+        console.log(current);
+      });
       document.documentElement.style.setProperty('--fade-time', this.fadeTime/1000 + "s");
       this.show();
     }

@@ -12,8 +12,13 @@
     "@ckeditor/ckeditor5-vue": "^1.0.1",
     "core-js": "^3.6.4",
     "firebase": "^7.8.2",
+    "request": "^2.88.2",
+    "rquest": "^0.1.0",
     "vue": "^2.6.11",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "weather-js": "^2.0.0",
+    "weather.js": "^0.1.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@mdi/js": "^4.9.95",
