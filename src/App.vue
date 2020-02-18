@@ -57,6 +57,20 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+@font-face {
+    font-family: 'Guru';
+    src: url('https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/font%2Fsubset-Guru-Regular.eot?alt=media&token=9ada7211-0284-47bc-8174-15ec02a30cb2');
+    src: url('https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/font%2Fsubset-Guru-Regular.eot?alt=media&token=9ada7211-0284-47bc-8174-15ec02a30cb2?#iefix') format('embedded-opentype'),
+        url('https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/font%2Fsubset-Guru-Regular.woff2?alt=media&token=53498308-ef9b-40a0-a941-6aa68b568302') format('woff2'),
+        url('https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/font%2Fsubset-Guru-Regular.woff?alt=media&token=14399fce-6cfd-4e14-aab2-f741f0fa1689') format('woff'),
+        url('https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/font%2Fsubset-Guru-Regular.svg?alt=media&token=39d31647-16c2-4eba-84ed-386eeba58e24#Guru-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+  --guru-color: #ff9b34;
+}
 #main{
   margin: 0;
   width: 100%;
@@ -70,7 +84,10 @@ body::-webkit-scrollbar {
 
 /* Hide scrollbar for IE and Edge */
 body {
+  font-family: 'Guru', sans-serif;
   -ms-overflow-style: none;
+  word-spacing: 25px;
+
 }
 .btn{
   position: fixed;

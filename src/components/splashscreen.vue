@@ -1,6 +1,6 @@
 <template>
   <div v-if = "shown" id = "splashscreen">
-    <img src = "../assets/logoF0A251.svg" />
+    <img src = "../assets/logoINV.svg" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@
         type: Number,
       },
       fps: {
-        default: 48,
+        default: 40,
         type: Number,
       },
       frequency: {
@@ -49,8 +49,8 @@
     methods: {
       moveStep(){
         this.theta += 2*Math.PI/(this.frequency*this.fps);
-        this.y = Math.sin(this.theta*4)*15;
-        this.x = Math.sin(this.theta)*45;
+        this.y = Math.sin(this.theta*4)*17;
+        this.x = Math.sin(this.theta)*40;
         document.documentElement.style.setProperty('--y', this.y + "px");
         document.documentElement.style.setProperty('--x', this.x + "px");
       },
@@ -105,14 +105,16 @@
   --fader: 1;
   --fade-time: 0.5s;
 }
+
 #splashscreen{
+
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   z-index: 1000;
-  background:#F0A251;
+  background:#070706;
   overflow: hidden;
   opacity: var(--fader);
   transition: var(--fade-time) opacity ease-out;

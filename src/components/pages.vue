@@ -1,10 +1,10 @@
 <template>
   <div id = "about-guru">
       <div class = "right" @click = "next('right')" v-if = "right_possible">
-        <v-icon color = "rgb(240, 162, 81)" size = "100px">keyboard_arrow_right</v-icon>
+        <v-icon color = "var(--guru-color)" size = "100px">keyboard_arrow_right</v-icon>
       </div>
       <div  class = "left" @click = "next('left')" v-if = "left_possible">
-        <v-icon color = "rgb(240, 162, 81)" size = "100px">keyboard_arrow_left</v-icon>
+        <v-icon color = "var(--guru-color)" size = "100px">keyboard_arrow_left</v-icon>
       </div>
       <div class = "bottom">
         <tr style = "width: 50%">
@@ -15,10 +15,10 @@
       </div>
       <div class = "top">
         <span>{{cc}}</span>
-        <v-icon v-if = "editable" color = "rgb(240, 162, 81)" size = "50px" @click = "save">save</v-icon>
-        <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "addPage()">add</v-icon>
-        <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "removePage()">remove</v-icon>
-        <v-icon color = "rgb(240, 162, 81)" size = "50px" @click = "editToggle">visibility</v-icon>
+        <v-icon v-if = "editable" color = "var(--guru-color)" size = "50px" @click = "save">save</v-icon>
+        <v-icon color = "var(--guru-color)" size = "50px" @click = "addPage()">add</v-icon>
+        <v-icon color = "var(--guru-color)" size = "50px" @click = "removePage()">remove</v-icon>
+        <v-icon color = "var(--guru-color)" size = "50px" @click = "editToggle">visibility</v-icon>
       </div>
 
       <v-window v-model = "pg">
@@ -28,6 +28,46 @@
             </div>
             <ckeditor  :editor="editor" v-if="edit" :value = "page" @input = "update(i, $event)"></ckeditor>
 
+            <div class = "welcome-icons">
+          <tr>
+            <td>
+              <img src = "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fmy-icon_phone-book.svg?alt=media&token=8a28a05b-04e4-46c2-9400-e21e1625abf4" />
+            </td>
+            <td>
+              <img src = "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fmy-icon_calendar.svg?alt=media&token=2b1beebf-c52f-434a-b3da-1974b9a675b9" />
+            </td>
+
+            <td>
+              <img src = "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fmy-icon_Reminders.svg?alt=media&token=b26bb4d7-a744-4970-aae6-ecf4248a1ce2" />
+            </td>
+            <td>
+              <img src = "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fmy-icon_key.svg?alt=media&token=8fd1dc2d-7881-466f-a33f-be04583d17ff" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>
+                Forget the need for a physical key
+              </p>
+            </td>
+            <td>
+              <p>
+                Stay up to date with events within your institutions community
+              </p>
+            </td>
+
+            <td>
+              <p>
+                Don’t run late with fees and easily forgotten payments
+              </p>
+            </td>
+            <td>
+              <p>
+                Leave hunting for important contacts to us
+              </p>
+            </td>
+          </tr>
+        </div>
         </v-window-item>
         <div class = "copyright">{{cc2}}</div>
       </v-window>
@@ -124,7 +164,7 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
     },
     created(){
       window.addEventListener('resize', ()=> {cssSet('--padding', ( ((window.innerWidth - 900)/2 < 100 )?(100):( (window.innerWidth - 900)/2 )) + 'px')});
-      cssSet('--padding', ( ((window.innerWidth - 900)/2 < 100 )?(100):( (window.innerWidth - 900)/2 )) + 'px')
+      cssSet('--padding', ( ((window.innerWidth - 1100)/2 < 100 )?(100):( (window.innerWidth - 1100)/2 )) + 'px')
       this.fade(3500);
       this.pgs = this.value.length
     }
@@ -134,7 +174,6 @@ let cssSet = (variable, set) => {document.documentElement.style.setProperty(vari
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
 :root{
   --fact: 10;
   --padding: 150px;
@@ -149,7 +188,7 @@ input{
   position: absolute;
   top: 0;
   left: 0;
-  border: 7.5px solid rgba(240, 162, 81, 0.5);
+  border: 7.5px solid var(--guru-color);
   margin: -7.5px -7.5px;
   width: 30px;
   height: 30px;
@@ -158,8 +197,11 @@ input{
 .lctn div:not(.show){
   opacity: 0;
 }
+.lctn div:hover{
+  opacity: 0.3;
+}
 .show{
-  opacity: 1;
+  opacity: 0.5;
 }
 .copyright{
   width:100%;
@@ -173,12 +215,11 @@ input{
   height:15px;
   padding: 7.5px;
   border-radius: 26px;
-  background: rgb(240, 162, 81);
+  background: var(--guru-color);
 }
 #about-guru{
-  background: white;
+  background: #070706;
   padding:  100px var(--padding);
-  font-family: 'Roboto', sans-serif;
 }
 .bottom, .top{
   position: fixed;
@@ -235,11 +276,29 @@ blockquote p{
 }
 h2{
   font-size: 70px;
-  margin-bottom: 30px;
+  padding: 20px 0;
+  color: var(--guru-color);
+}
+
+h4{
+  font-size: 30px;
+  margin-top: 0;
+  color: var(--guru-color)
+}
+h2 ~ h4{
+  color: white;
+  display: inline-block;
+  line-height: 50px;
+  padding: 10px 30px;
+  border-radius: 50px;
+  background: var(--guru-color);
+  border: 4px solid var(--guru-color);
 }
 p{
-  font-size: 25px;
+  font-size:  20px;
   font-weight: 400;
+  line-height: 40px;
+  color: #FEF9E4;
 }
 .txt{
   font-size: 50px;
@@ -294,4 +353,50 @@ p{
   height: 100%;
   transform: rotateY(-45deg);
 }
+.phone-in-key{
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.key{
+  top:65px;
+  position: absolute;
+  left: 37px;
+}
+.phone{
+  top:0;
+  left:0;
+  position: absolute;
+}
+.welcome-icons{
+  margin-top:50px;
+  display: table;
+  max-width: 100%;
+}
+.welcome-icons  td{
+  width: 25%;
+  padding: 0;
+}
+
+.welcome-icons  tr:first-child{
+  vertical-align: baseline;
+  max-width: 100%;
+}
+.welcome-icons  tr:last-child{
+  vertical-align: top;
+  text-align: center;
+}
+.welcome-icons img{
+  display: flex;
+  margin: 0 20px;
+}
+.welcome-icons tr > td > p{
+  margin: 50px 30px;
+  padding: 0;
+  font-size: 15px;
+}
+
+
+
+
 </style>
