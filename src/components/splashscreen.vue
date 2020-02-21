@@ -1,14 +1,16 @@
 <template>
-  <div v-if = "shown" id = "splashscreen">
-    <template v-if = "loaded">
-      <img v-if = "icon" :src = "icon" />
-      <div v-if = "temp" class = "temp">{{temp}}</div>
-    </template>
+  <div>
+
+    <div v-if = "shown" id = "splashscreen">
+
+    </div>
+    <logo :size = "size" :pos = "pos" :mode = "logomode"></logo>
   </div>
+
 </template>
 
 <script>
-import axios from 'axios'
+import logo from './logo.vue';
   export default {
     name: 'splashscreen',
     props: {
@@ -33,142 +35,51 @@ import axios from 'axios'
         type: Number
       }
     },
-    data: () => ({
-      theta: 0,
-      y: 0,
-      x: 0,
-      shown: true,
-      code: '',
-      temp: false,
-      loaded: false,
-      weather:{
-        "clear-day":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_2.svg?alt=media&token=3316ca2f-038d-4df8-983a-afc570dc881f",
-        "clear-night": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_2.svg?alt=media&token=3316ca2f-038d-4df8-983a-afc570dc881f",
-        "partly-cloudy-day": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_3.svg?alt=media&token=feed4b32-c53a-40c9-a9a3-ea6c4cfed5dd",
-        "partly-cloudy-night":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_1.svg?alt=media&token=eaea8bdf-cab8-4a1d-af22-eeaa4e757e1f",
-        "cloudy": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_3.svg?alt=media&token=feed4b32-c53a-40c9-a9a3-ea6c4cfed5dd",
-        "rain":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_0.svg?alt=media&token=d6e007ec-44b6-40f7-9125-41fc33321e6d",
-        "sleet":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_4.svg?alt=media&token=744e8707-62b4-478c-9312-9d1339c1e921",
-        "snow":"https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_4.svg?alt=media&token=744e8707-62b4-478c-9312-9d1339c1e921",
-        "wind": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_5.svg?alt=media&token=0274e1a8-4fd8-4bae-9c74-da226b642898",
-        "fog": "https://firebasestorage.googleapis.com/v0/b/guru-admin.appspot.com/o/assets%2Fweather%20icons%2Fguru-weather_2.svg?alt=media&token=3316ca2f-038d-4df8-983a-afc570dc881f",
-      }
-
-
-    }),
-    computed: {
-      icon(){
-        if(this.code.length > 0){
-          return this.weather[this.code]
-        }else{
-          return false
-        }
-      }
+    components: {
+      logo
     },
+    data: () => ({
+
+
+      pos: '50 50',
+      logomode: 'wavey-logo',
+      size: '300px',
+      shown: true,
+    }),
     watch: {
       value: function(a){
         if(a){
-          this.fade();
-        }else{
-          this.show();
+          this.pos = '100 0';
+          this.size = '120px';
+          document.getElementById("splashscreen").style.setProperty('--fader', 0);
+          setTimeout(() => {
+            this.logomode = 'weather'
+            this.shown = false;
+          }, 1750);
         }
       }
     },
-    methods: {
-      moveStep(){
-        this.theta += 2*Math.PI/(this.frequency*this.fps);
-        this.y = Math.sin(this.theta*4)*17;
-        this.x = Math.sin(this.theta)*40;
-        document.documentElement.style.setProperty('--y', this.y + "px");
-        document.documentElement.style.setProperty('--x', this.x + "px");
-      },
-      iterator(x){
-        setTimeout(() => {
-          if(this.shown){
-            if(x>0){
-              this.moveStep();
-              this.iterator(x-1);
-            }else if(x == -1){
-              this.moveStep();
-              this.iterator(-1);
-            }else if(x == 0){
-              this.fade();
-              this.iterator(-1);
-            }
-          }
-        }, 1000/this.fps)
-      },
-      fade(){
-        document.documentElement.style.setProperty('--fader', "0");
-        if(!this.value) {
-          this.$emit('input', true);
-        }
-        setTimeout(() => {
-          this.$emit('faded', true);
-          this.shown = false;
-        }, this.fadeTime)
-      },
-      show(){
-        this.shown = true;
-        document.documentElement.style.setProperty('--fader', "1");
-        if(this.time != -1){
-          this.iterator(this.time/(1000/this.fps));
-        }else{
-          this.iterator(-1);
-        }
-      }
-    },
-    created(){
-
-      axios.get('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/fa5a2c2c8217557d4b1cdde9a875af92/-33.890971,%20151.188661').then(
-      ({ data}) => {
-        this.temp = Math.round((data.currently.temperature - 32) * (5/9)) + "`";
-        this.code = data.currently.icon;
-        this.loaded = true;
-        return data;
-      },
-    );
-
-      document.documentElement.style.setProperty('--fade-time', this.fadeTime/1000 + "s");
-      this.show();
-    }
-
   }
+
 </script>
 
 <style>
-:root{
-  --y: 0px;
-  --x: 0px;
-  --fader: 1;
-  --fade-time: 0.5s;
-}
+
 
 #splashscreen{
-
+  --fader: 1;
+  --fade-time: 1s;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 1000;
+  z-index: 20;
   background:#070706;
   overflow: hidden;
   opacity: var(--fader);
   transition: var(--fade-time) opacity ease-out;
 }
-#splashscreen img{
-  width: 300px;
-  position: fixed;
 
-  top: calc(50% - 300px / 2 + var(--y));
-  left: calc(50% - 300px / 2 + var(--x));
-}
-.temp {
-  color: #FEF9E4;
-  font-size: 50px;
-  position: fixed;
-  top: calc(50% - 15px + var(--y));
-  left: calc(50%  + 10px + var(--x));
-}
+
 </style>
