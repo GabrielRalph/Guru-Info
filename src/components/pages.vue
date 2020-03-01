@@ -180,7 +180,7 @@ input{
   background: var(--guru-color);
 }
 #about-guru{
-  background: #070706;
+  background: var(--background-color);
   padding:  100px var(--padding);
 }
 .bottom, .top{
@@ -237,9 +237,15 @@ blockquote p{
   float: left;
   margin: 0 20px 20px 0;
 }
+h1{
+  margin-bottom: 100px;
+  margin-top:0px;
+  text-align: center;
+}
 h2{
   font-size: 70px;
   padding: 20px 0;
+  margin-bottom: 20px;
   color: var(--guru-color);
 }
 
@@ -247,6 +253,12 @@ h4{
   font-size: 30px;
   margin-top: 0;
   color: var(--guru-color)
+}
+h5{
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 20px;
+  word-spacing: 15px;
 }
 h2 ~ h4{
   color: white;
@@ -258,11 +270,12 @@ h2 ~ h4{
   border: 4px solid var(--guru-color);
 }
 p{
-  font-size:  25px;
+  font-size:  20px;
   letter-spacing: 2px;
   font-weight: 400;
   line-height: 40px;
-  color: #FEF9E4;
+  word-spacing: 17px;
+  color: var(--text-color);
 }
 .txt{
   font-size: 50px;

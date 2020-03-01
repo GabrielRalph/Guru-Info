@@ -695,9 +695,9 @@ import axios from 'axios'
   transition-timing-function: cubic-bezier(0.3642124232,0, 0.6357875768, 1);
 }
 
-.orange{fill:#FF9B34;}
+.orange{fill:#212121;}
 
-.cream{fill:#FEF9E4;}
+.cream{fill:var(--guru-color);}
 svg{
   width:var(--logo-size);
   transition: 2s cubic-bezier(0.312,0.504, 0.6366, 1);

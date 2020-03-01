@@ -75,7 +75,7 @@ import logo from './logo.vue';
   height: 100%;
   width: 100%;
   z-index: 20;
-  background:#070706;
+  background:var(--background-color);
   overflow: hidden;
   opacity: var(--fader);
   transition: var(--fade-time) opacity ease-out;

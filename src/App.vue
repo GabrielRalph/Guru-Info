@@ -70,6 +70,8 @@ export default {
 }
 :root{
   --guru-color: #ff9b34;
+  --text-color: #070706;
+  --background-color:#fffdf5;
 }
 #main{
   margin: 0;
@@ -86,9 +88,8 @@ body::-webkit-scrollbar {
 body {
   font-family: 'Guru', sans-serif;
   -ms-overflow-style: none;
-  word-spacing: 25px;
-  background: #070706;
-  color: #FEF9E4;
+  background: var(--background-color);
+  color: var(--text-color);
 
 }
 .btn{
