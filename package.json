@@ -16,7 +16,7 @@
     "request": "^2.88.2",
     "rquest": "^0.1.0",
     "vue": "^2.6.11",
-    "vuetify": "^2.2.11",
+    "vuetify": "^2.6.10",
     "weather-js": "^2.0.0",
     "weather.js": "^0.1.0",
     "xml2js": "^0.4.23"
